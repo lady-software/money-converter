@@ -1,7 +1,6 @@
 const cacheName = 'v2';
 const cacheFiles = [
- 
-  './'
+  './',
   //'/app.js'
 ]
 
@@ -40,7 +39,7 @@ this.addEventListener('fetch', event => {
 
   console.log("[serviceWorker] Fetching", event.request.url);
 
-  /*event.respondWith(
+  event.respondWith(
 
   		caches.match(event.request)
 
@@ -72,5 +71,6 @@ this.addEventListener('fetch', event => {
   				console.log("[serviceWorker] Error fetching and caching", err);
   			})
   		})
-)	*/		
+)	
+
 });

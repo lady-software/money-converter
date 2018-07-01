@@ -2,13 +2,13 @@ const express = require("express");
 const https = require("https");
 const app = express();
 const bodyParser = require('body-parser');
-//var navigator = require('web-midi-api');
 
 // urlencoded;
 app.use(bodyParser.urlencoded({ extended: true }));
 
 const routes = require('./routes/index');
-//var currences = require('./data/data.json');
+//const idb = require('./public/idb');
+
 
 //****************************************  Enregistre un worker
 
@@ -29,6 +29,7 @@ app.use(express.static("node_modules/bootstrap/dist"));
 app.use('/', routes);
 //app.use('/', currences);
 
+//app.use('/idb-test', idb);
 
 app.listen(3000, () =>  console.log('Money Converter app listening on port 3000.') ); 
 

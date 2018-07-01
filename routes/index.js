@@ -1,8 +1,10 @@
+const idb = require("idb");
 const express = require("express");
 const https = require("https");
 const router = express.Router();
 
 const currencies = require("../data/data.json");
+
 
 //const url = 'https://free.currencyconverterapi.com/api/v5/currencies';
 
@@ -59,7 +61,6 @@ function convertCurrency(amount, fromCurrency, toCurrency,cb) {
 }
 
 
-
 router.get('/', (req,res, next) => {
 	res.render("index",{
 
@@ -69,6 +70,8 @@ router.get('/', (req,res, next) => {
     });
 	
 });
+
+
 
 
 
@@ -98,5 +101,27 @@ router.post('/result', (req, res, next) => {
 
       
 });
+
+
+//// to add data
+//const valueFromApi = {
+//    "query": {
+//        "count": 1
+//    },
+//    "results": {
+//        "NGN_USD": {
+//            "id": "NGN_USD",
+//            "val": 0.002801,
+//            "to": "USD",
+//            "fr": "NGN"
+//        }
+//    }
+//}
+//const key = 'NGN_USD'
+//dbInstance.addData('conversions', key, valueFromApi.results[key])
+
+//// to get data
+//const conversion = dbInstance.getData('conversions', key)
+
 
 module.exports = router;
