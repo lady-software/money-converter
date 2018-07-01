@@ -1,43 +1,52 @@
 function convertCurrency(amount, fromCurrency, toCurrency, cb) {
 
-		  fromCurrency = encodeURIComponent(fromCurrency);
-		  toCurrency = encodeURIComponent(toCurrency);
-		  var query = fromCurrency + '_' + toCurrency;
+    fromCurrency = encodeURIComponent(fromCurrency);
+    toCurrency = encodeURIComponent(toCurrency);
+    let query = fromCurrency + '_' + toCurrency;
 
-		  var url = 'https://www.free.currencyconverterapi.com/api/v5/convert?q='
-		            + query + '&compact=ultra';
+    console.log("" + query);
 
-		  https.get(url, function(response){
-		      var body = '';
+    let url = 'https://free.currencyconverterapi.com/api/v5/convert?q=' + query + '&compact=ultra';
 
-		      response.on('data', function(chunk){
-		          body += chunk;
-		      });
+    https.get(url, response => {
+        let body = '';
 
-		      response.on('end', function(){
-		          try {
-		            var jsonObj = JSON.parse(body);
+        response.on('data', function (chunk) {
+            body += chunk;
+        });
 
-		            var val = jsonObj[query];
-		            if (val) {
-		              var total = val * amount;
-		              cb(null, Math.round(total * 100) / 100);
+        response.on('end', () => {
+            try {
 
-		              console.log("Resultat" , cb);
+                let jsonObj = JSON.parse(body);
 
-		              
-		            } else {
-		              var err = new Error("Value not found for " + query);
-		              console.log(err);
-		              cb(err);
-		            }
-		          } catch(e) {
-		            console.log("Parse error: ", e);
-		            cb(e);
-		          }
-		      });
-		  }).on('error', function(e){
-		        console.log("Got an error: ", e);
-		        cb(e);
-		  });
-		}
+                //var jsonObj1 = JSON.stringify(jsonObj);
+
+                //console.log("", jsonObj);
+
+                let val = jsonObj[query];
+
+                console.log("Valeur ", val);
+
+
+                if (val) {
+                    let total = val * amount;
+                    cb(null, Math.round(total * 100) / 100);
+
+                    console.log("Total ", parseFloat(val * amount));
+
+                } else {
+                    let err = new Error("Value not found for " + query);
+                    console.log(err);
+                    cb(err);
+                }
+            } catch (e) {
+                console.log("Parse error: ", e);
+                cb(e);
+            }
+        });
+    }).on('error', e => {
+        console.log("Got an error: ", e);
+        cb(e);
+    });
+}

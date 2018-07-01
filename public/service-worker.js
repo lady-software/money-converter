@@ -1,36 +1,33 @@
-var cacheName = 'v2';
-var cacheFiles = [
+const cacheName = 'v2';
+const cacheFiles = [
  
   './'
   //'/app.js'
 ]
 
-this.addEventListener('install', function(event) {
+this.addEventListener('install', event => {
      
      console.log("[serviceWorker] Install")
 
-     event.waitUntil(
-          
-           caches.open(cacheName).then(function(cache){
-
+     event.waitUntil(         
+           caches.open(cacheName).then(cache => {
            	  console.log("[serviceWorker] Caching cacheFiles");
            	  return cache.addAll(cacheFiles);
            })
      	)
 });
 
-this.addEventListener('activate', function(event) {
+this.addEventListener('activate', event => {
 
    console.log("[serviceWorker] Activate")
 
    event.waitUntil(
           
-           caches.keys().then(function(cacheNames){
+           caches.keys().then(cacheNames =>{
 
-           	  return Promise.all(cacheNames.map(function(thisCacheName){
+           	  return Promise.all(cacheNames.map(thisCacheName => {
 
            	  	 if(thisCacheName !== cacheName){
-
            	  	 	console.log("[serviceWorker] Removing Cached Files from", thisCacheName);
            	  	 	return caches.delete(thisCacheName);
            	  	 }
@@ -39,7 +36,7 @@ this.addEventListener('activate', function(event) {
      	)
 });
 
-this.addEventListener('fetch', function(event) {
+this.addEventListener('fetch', event => {
 
   console.log("[serviceWorker] Fetching", event.request.url);
 

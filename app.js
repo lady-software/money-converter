@@ -1,13 +1,13 @@
-var express = require("express");
-var https = require("https");
-var app = express();
-var bodyParser = require('body-parser');
+const express = require("express");
+const https = require("https");
+const app = express();
+const bodyParser = require('body-parser');
 //var navigator = require('web-midi-api');
 
 // urlencoded;
 app.use(bodyParser.urlencoded({ extended: true }));
 
-var routes = require('./routes/index');
+const routes = require('./routes/index');
 //var currences = require('./data/data.json');
 
 //****************************************  Enregistre un worker
@@ -30,9 +30,6 @@ app.use('/', routes);
 //app.use('/', currences);
 
 
-app.listen(3000, function(){
-
-	 console.log('Money Converter app listening on port 3000.')
-}); 
+app.listen(3000, () =>  console.log('Money Converter app listening on port 3000.') ); 
 
 module.exports = app;
