@@ -65,7 +65,7 @@ function convertCurrency(amount, fromCurrency, toCurrency,cb) {
 router.get('/', (req,res, next) => {
 	res.render("index",{
 
-		      title: "Currency Convert",
+		      title: "Money Converter",
 		      body:currencies,
 
     });

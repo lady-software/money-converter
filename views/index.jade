@@ -12,7 +12,7 @@ html(lang='en')
     br
     br
     .container
-      h3.text-primary Currency Convertion
+      h3.text-primary A's Money Converter !
       hr
       form.form-inline(method='post', action='/result')
         .row
@@ -20,15 +20,15 @@ html(lang='en')
             .input-group
               input.form-control(name='amounts',type='text')
               select.form-control(name='fromCurrency')
-                each bb in body
-                  each bb1 in bb
-                    option(value='#{bb1.id}') #{bb1.id}
+                each fromCurr in body
+                  each fc in fromCurr
+                    option(value='#{fc.id}') #{fc.id}
               .input-group-prepend
                 span.input-group-text(id='') to
               select.form-control(name='toCurrency')
-                each b in body
-                  each b1 in b
-                    option(value='#{b1.id}') #{b1.id}
+                each toCurr in body
+                  each tc in toCurr
+                    option(value='#{tc.id}') #{tc.id}
           // col
           .col-md-3
             button.btn.btn-secondary.btn-sm.btn-block(type='submit', style='padding-bottom: 5%') Convert
