@@ -32,7 +32,7 @@ app.use('/', routes);
 
 app.listen(3000, function(){
 
-	 console.log('Money converter app listening on port 3000.')
+	 console.log('Money Converter app listening on port 3000.')
 }); 
 
 module.exports = app;

@@ -7,9 +7,10 @@ html(lang="en")
     | 	
     meta(name="viewport", content="width=device-width, initial-scale=1")
     | 	
-    title Conversion Result 
+    title Result currency
     | 	
     link(rel="stylesheet", type="text/css", href="/css/bootstrap.min.css")
+    script(src='sw.js')
   body
     br
     br
@@ -18,15 +19,15 @@ html(lang="en")
     .container
       .card
         .card-header
-          | Currency Converter
+          | Conversion Result
         |   
         .card-body
           h5.card-title Convert #{ rs }
           |     
           p.card-text Amount : #{ am }
           |     
-          p.card-text FromCurrency : #{ from }
+          p.card-text FromCurrent : #{ from }
           |     
-          p.card-text ToCurrency : #{ to }
+          p.card-text ToCurrent : #{ to }
           |     
           a.btn.btn-primary(href="/") Return

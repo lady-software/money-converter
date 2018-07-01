@@ -1,7 +1,8 @@
 var cacheName = 'v2';
 var cacheFiles = [
-  './',
-  './app.js'
+ 
+  './'
+  //'/app.js'
 ]
 
 this.addEventListener('install', function(event) {
@@ -42,7 +43,7 @@ this.addEventListener('fetch', function(event) {
 
   console.log("[serviceWorker] Fetching", event.request.url);
 
-  event.respondWith(
+  /*event.respondWith(
 
   		caches.match(event.request)
 
@@ -65,7 +66,7 @@ this.addEventListener('fetch', function(event) {
   				var requestClone = response.clone();
 
   				caches.open(cacheName).then(function(cache){
-  					cache.put(event.request, responseClone);
+  					cache.put(event.request, requestClone);
   					return response;
 
   				});
@@ -74,18 +75,5 @@ this.addEventListener('fetch', function(event) {
   				console.log("[serviceWorker] Error fetching and caching", err);
   			})
   		})
-)			
+)	*/		
 });
-
-
-
-
-
-
-
-
-
-
-
-
-

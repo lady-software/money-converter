@@ -1,25 +1,25 @@
-var express = require("express");
-var https = require("https");
-var router = express.Router();
+const express = require("express");
+const https = require("https");
+const router = express.Router();
 
 //var navigator = require('web-midi-api');
-var currences = require("../data/data.json");
+const currences = require("../data/data.json");
 
-var url = 'https://free.currencyconverterapi.com/api/v5/currencies';
+//const url = 'https://free.currencyconverterapi.com/api/v5/currencies';
 
 
 function convertCurrency(amount, fromCurrency, toCurrency,cb) {
 
 		  fromCurrency = encodeURIComponent(fromCurrency);
 		  toCurrency = encodeURIComponent(toCurrency);
-		  var query = fromCurrency + '_' + toCurrency;
+		  let query = fromCurrency + '_' + toCurrency;
 
 		  console.log("" +query);
 
-		  var url = 'https://free.currencyconverterapi.com/api/v5/convert?q='+query+'&compact=ultra';
+		  let url = 'https://free.currencyconverterapi.com/api/v5/convert?q='+query+'&compact=ultra';
 
 		  https.get(url, function(response){
-		      var body = '';
+		      let body = '';
 
 		      response.on('data', function(chunk){
 		          body += chunk;
@@ -28,25 +28,25 @@ function convertCurrency(amount, fromCurrency, toCurrency,cb) {
 		      response.on('end', function(){
 		          try {
 
-		            var jsonObj = JSON.parse(body);
+		            let jsonObj = JSON.parse(body);
 
 		            //var jsonObj1 = JSON.stringify(jsonObj);
 
 		            //console.log("", jsonObj);
 
-		            var val = jsonObj[query];
+		            let val = jsonObj[query];
 
 		            console.log("Valeur ", val);
 
 
 		            if (val) {
-		              var total = val * amount;
+		              let total = val * amount;
 		              cb(null, Math.round(total * 100) / 100);
 
 		              console.log("Total ", parseFloat(val * amount));
 		              
 		            } else {
-		              var err = new Error("Value not found for " + query);
+		              let err = new Error("Value not found for " + query);
 		              console.log(err);
 		              cb(err);
 		            }
@@ -97,9 +97,8 @@ router.get('/',function(req,res, next){
 
 		      title: "Currency Convert",
 		      body:currences,
-		      
 
-		  });
+    });
 	
 });
 
