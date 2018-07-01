@@ -21,7 +21,7 @@ app.set("views", "./views");
 app.set('view engine', 'jade');
 
 
-// Pour acceder au repetoire 
+// to access directories we need to use
 
 app.use(express.static("public"));
 app.use(express.static("node_modules/bootstrap/dist"));

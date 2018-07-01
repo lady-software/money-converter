@@ -20,9 +20,7 @@ function convertCurrency(amount, fromCurrency, toCurrency,cb) {
 		  https.get(url, response => {
 		      let body = '';
 
-		      response.on('data', function(chunk){
-		          body += chunk;
-		      });
+		      response.on('data', chunk => body += chunk );
 
 		      response.on('end', () => {
 		          try {
